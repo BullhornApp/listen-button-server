@@ -1,0 +1,20 @@
+# http bind information when using default server
+HTTP_HOST = '0.0.0.0'
+HTTP_PORT = 8080
+
+# credentials for your carrierx account
+CORE_BASE_URL = 'https://api.carrierx.com/core/v2'
+CORE_USERNAME = ''
+CORE_PASSWORD = ''
+
+# credentials for the mediator endpoint on your account
+MEDIATOR_BASE_URL = 'https://api.carrierx.com/mediator/v1'
+MEDIATOR_USERNAME = ''
+MEDIATOR_PASSWORD = ''
+
+# phonenumber routed to the FlexML endpoint and pointed at this web service
+FLEXML_DID = ''
+
+# timeouts to control how long binding will accept initial call and redials
+WAIT_ORIGINATION_DID_TTL = 60
+MAXIMUM_TTL = 300
