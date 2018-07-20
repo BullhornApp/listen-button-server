@@ -18,3 +18,9 @@ FLEXML_DID = ''
 # timeouts to control how long binding will accept initial call and redials
 WAIT_ORIGINATION_DID_TTL = 60
 MAXIMUM_TTL = 300
+
+# optional audio prompt to play as intro before the actual stream, should be public URL for audio (supported formats: .wav and .mp3)
+INTRO_PROMPT = ''
+
+# optional audio prompt to play as an error message if something goes wrong during playback, should be public URL for audio (supported formats: .wav and .mp3).
+ERROR_PROMPT = ''

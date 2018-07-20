@@ -1,18 +1,14 @@
 #!/usr/bin/env python
 
 import base64
-import logging
 
 from carrierx.client import CoreClient
 from carrierx.client import MediatorClient
-
 from flask import Flask
 from flask import jsonify
 from flask import request
 from flask_cors import CORS
-
 from site_settings import *
-
 
 app = Flask(__name__)
 CORS(app)
@@ -28,6 +24,7 @@ mediator = MediatorClient(
     password=MEDIATOR_PASSWORD,
     base_url=MEDIATOR_BASE_URL,
 )
+
 
 class RequestException(Exception):
     status_code = 400
@@ -79,11 +76,35 @@ def playback():
 
     url = base64.b64decode(data['SipHeader_X-Playback-URL']).decode('utf8')
 
-    return '''
-    <Response>
-        <Play streaming="true" timeLimit="7200">{}</Play>
-    </Response>
-    '''.format(url)
+    if INTRO_PROMPT:
+        return '''
+                <Response>
+                    <Play>{}</Play>
+                    <Play streaming="true" timeLimit="7200" errorAction="/error">{}</Play>
+                </Response>
+                '''.format(INTRO_PROMPT, url)
+    else:
+        return '''
+                <Response>
+                    <Play streaming="true" timeLimit="7200" errorAction="/error">{}</Play>
+                </Response>
+                '''.format(url)
+
+
+@app.route('/error', methods=['POST'])
+def stream_error():
+    if ERROR_PROMPT:
+        return '''
+            <Response>
+                <Play>{}</Play>
+            </Response>
+            '''.format(ERROR_PROMPT)
+    else:
+        return '''
+            <Response>
+                <Say voice="woman">A playback error has occurred</Say>
+            </Response>
+            '''
 
 
 if __name__ == '__main__':
