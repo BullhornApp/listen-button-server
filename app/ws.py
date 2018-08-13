@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import base64
+from xml.sax.saxutils import escape
 
 from carrierx.client import CoreClient
 from carrierx.client import MediatorClient
@@ -82,13 +83,13 @@ def playback():
                     <Play>{}</Play>
                     <Play streaming="true" timeLimit="7200" errorAction="/error">{}</Play>
                 </Response>
-                '''.format(INTRO_PROMPT, url)
+                '''.format(INTRO_PROMPT, escape(url))
     else:
         return '''
                 <Response>
                     <Play streaming="true" timeLimit="7200" errorAction="/error">{}</Play>
                 </Response>
-                '''.format(url)
+                '''.format(escape(url))
 
 
 @app.route('/error', methods=['POST'])
