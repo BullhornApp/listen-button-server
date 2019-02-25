@@ -1,4 +1,4 @@
--e git+https://github.com/carrierx/carrierx-python@4d16d4eb105f6b49b9876f8c6bb778d83be1fca3#egg=carrierx
+-e git+https://github.com/carrierx/carrierx-python@cb5ec52b38d17c2d931c9a6f5973cd471a16038a#egg=carrierx
 certifi==2018.4.16
 chardet==3.0.4
 click==6.7
@@ -7,8 +7,8 @@ idna==2.6
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
-requests==2.18.4
-urllib3==1.22
+requests==2.21.0
+urllib3==1.24.1
 Werkzeug==0.14.1
 uWSGI==2.0.17
 Flask-Cors==3.0.4
